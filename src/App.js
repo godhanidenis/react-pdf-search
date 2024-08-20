@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import TableComponent from "./components/TableComponent";
-import MyPDFSearchComponent from "./components/PdfViewer";
+import PDFParser from "./components/PDFParsing";
 
 const data = {
   columns: [
@@ -10,26 +10,21 @@ const data = {
     { Header: "Column 2", accessor: "col2" },
   ],
   rows: [
-    { col1: "Example text 1", col2: "Example text 2" },
-    { col1: "Search term", col2: "Another text" },
+    { col1: "Company number", col2: "artpass ID" },
+    { col1: "Customer", col2: "Verified" },
   ],
 };
 
 const App = () => {
   const [searchText, setSearchText] = useState("");
-  const [pageNumber, setPageNumber] = useState(1);
-  const [pdfUrl, setPdfUrl] = useState("/a.pdf");
+  const [PDF, setPdfUrl] = useState("/a.pdf");
 
   const handleCellClick = (text) => {
     setSearchText(text);
   };
 
-  const handlePageChange = (pageNum) => {
-    setPageNumber(pageNum);
-  };
-
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div style={{ display: "flex", height: "98vh" }}>
       <div
         style={{
           width: "50%",
@@ -45,7 +40,7 @@ const App = () => {
           searchText={searchText}
           onPageChange={handlePageChange}
         /> */}
-        <MyPDFSearchComponent />
+        <PDFParser PDFUrl={PDF} searchText={searchText} />
       </div>
     </div>
   );

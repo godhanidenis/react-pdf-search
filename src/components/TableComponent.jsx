@@ -1,9 +1,9 @@
 // src/components/TableComponent.jsx
-
-import React from "react";
+import React, { useState } from "react";
 import { useTable } from "react-table";
 
 const TableComponent = ({ data, onCellClick }) => {
+  const [clickedCell, setClickedCell] = useState(null);
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns: data.columns, data: data.rows });
 
@@ -27,18 +27,27 @@ const TableComponent = ({ data, onCellClick }) => {
         ))}
       </thead>
       <tbody {...getTableBodyProps()}>
-        {rows.map((row) => {
+        {rows.map((row, rowIndex) => {
           prepareRow(row);
           return (
             <tr {...row.getRowProps()}>
-              {row.cells.map((cell) => (
+              {row.cells.map((cell, cellIndex) => (
                 <td
                   {...cell.getCellProps()}
-                  onClick={() => onCellClick(cell.value)}
+                  onClick={() => {
+                    setClickedCell({ rowIndex, cellIndex });
+                    onCellClick(cell.value);
+                  }}
                   style={{
                     border: "1px solid black",
                     padding: "8px",
                     cursor: "pointer",
+                    backgroundColor:
+                      clickedCell &&
+                      clickedCell.rowIndex === rowIndex &&
+                      clickedCell.cellIndex === cellIndex
+                        ? "yellow"
+                        : "transparent",
                   }}
                 >
                   {cell.render("Cell")}
