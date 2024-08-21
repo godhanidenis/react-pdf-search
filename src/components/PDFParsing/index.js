@@ -6,7 +6,6 @@ import { getArea, getPlugin } from "./util";
 import PDFViewer from "./PDFViewer";
 import { bookmarkPlugin } from "@react-pdf-viewer/bookmark";
 import "@react-pdf-viewer/bookmark/lib/styles/index.css";
-import SearchComponent from "./SearchComponent";
 
 export default function Index(props) {
   const { PDFUrl, searchText } = props;
@@ -70,14 +69,6 @@ export default function Index(props) {
         }}
       >
         <div style={{ width: "100%", height: "95vh" }}>
-          {/* <Search>
-            {(SearchProps) => (
-              <SearchComponent
-                SearchProps={SearchProps}
-                searchText={searchText}
-              />
-            )}
-          </Search> */}
           <Search>{(SearchProps) => HandleSearch(SearchProps)}</Search>
           <PDF />
         </div>

@@ -12,12 +12,26 @@ const data = {
   rows: [
     { col1: "Company number", col2: "artpass ID" },
     { col1: "Customer", col2: "Verified" },
+    { col1: ", lentejas los viernes", col2: "Quijote" },
+    { col1: "mas", col2: "barbero" },
+    { col1: "condición", col2: "y deudas que sat" },
+    { col1: "prosigui", col2: "fantasía" },
+    { col1: "vio en el ca", col2: "con ning" },
+    { col1: "us libros l", col2: "18 y prosiguió s" },
+    { col1: "wel gezame", col2: ", zonder opze" },
+    { col1: "aangekondigde ", col2: " rechtsp" },
+    { col1: "toefent in de beslot", col2: "taatsblad" },
+    { col1: "Staatsblad ", col2: "Neergelegd" },
+    { col1: "an hetBelgisc", col2: "nnexe" },
+    { col1: "10/02/202", col2: "vote or partici" },
+    { col1: "oup of be", col2: "ucture " },
+    { col1: "e informatio", col2: "lez Ca" },
   ],
 };
 
 const App = () => {
   const [searchText, setSearchText] = useState("");
-  const [PDF, setPdfUrl] = useState("/a.pdf");
+  const [PDF, setPdfUrl] = useState("/c.pdf");
 
   const handleCellClick = (text) => {
     setSearchText(text);
