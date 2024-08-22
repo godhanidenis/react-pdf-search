@@ -31,7 +31,7 @@ const data = {
 
 const App = () => {
   const [searchText, setSearchText] = useState("");
-  const [PDF, setPdfUrl] = useState("/c.pdf");
+  const [PDF, setPdfUrl] = useState("/b.pdf");
 
   const handleCellClick = (text) => {
     setSearchText(text);
@@ -49,11 +49,6 @@ const App = () => {
         <TableComponent data={data} onCellClick={handleCellClick} />
       </div>
       <div style={{ width: "50%", padding: "10px" }}>
-        {/* <PdfViewer
-          pdfUrl={pdfUrl}
-          searchText={searchText}
-          onPageChange={handlePageChange}
-        /> */}
         <PDFParser PDFUrl={PDF} searchText={searchText} />
       </div>
     </div>

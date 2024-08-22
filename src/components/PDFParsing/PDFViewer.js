@@ -4,24 +4,16 @@ import { useState } from "react";
 const PDFViewer = (props) => {
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
-  const {
-    PDFUrl,
-    highlightPluginInstance,
-    searchPluginInstance,
-    bookmarkPluginInstance,
-  } = props;
+  const { PDFUrl, searchPluginInstance } = props;
   const workerUrl =
     "https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+
   return (
     <Worker workerUrl={workerUrl}>
       <Viewer
-        defaultScale={SpecialZoomLevel.PageFit}
+        // defaultScale={SpecialZoomLevel.PageFit}
         fileUrl={PDFUrl}
-        plugins={[
-          highlightPluginInstance,
-          searchPluginInstance,
-          bookmarkPluginInstance,
-        ]}
+        plugins={[searchPluginInstance]}
         onDocumentLoad={(e) => {
           setTotalPages(e.doc.numPages);
         }}
@@ -29,9 +21,9 @@ const PDFViewer = (props) => {
           setCurrentPage(e.currentPage + 1);
         }}
       />
-      <div style={{ textAlign: "center" }}>
-        {`Page ${currentPage} / ${totalPages}`}
-      </div>
+      <span
+        style={{ marginRight: "5%" }}
+      >{`Page ${currentPage} / ${totalPages}`}</span>
     </Worker>
   );
 };
